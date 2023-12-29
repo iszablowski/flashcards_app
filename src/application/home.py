@@ -2,6 +2,6 @@ from flask import Blueprint, request, url_for, redirect, render_template
 
 home = Blueprint('home', __name__)
 
-@home.route('/')
+@home.route('/', methods=['GET'])
 def home_page():
-    return '<h3>Home page<h3>'
+    return render_template('base.html')

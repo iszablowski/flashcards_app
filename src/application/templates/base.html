@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Home{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css-styles/styles.css') }}" />
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <nav class="navbar">
+                <div class="nav nav-app">
+                    <a class="nav-link" id="app-name" href="{{ url_for('home.home_page') }}">Home</a>
+                    <a class="nav-link" href="{{ url_for('home.home_page') }}">Train</a>
+                </div>
+                <div class="nav nav-user">
+                    <a class="nav-link" href="{{ url_for('auth.sign_in') }}">Sign in</a>
+                    <a class="nav-link" href="{{ url_for('auth.sign_up') }}">Sign up</a>
+                </div>
+            </nav>
+        </div>
+        {% block signin %}{% endblock %}
+        {% block signup %}{% endblock %}
+    </div>
+</body>
+</html>
