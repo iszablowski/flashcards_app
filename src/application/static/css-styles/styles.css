@@ -48,6 +48,10 @@ html, body {
 }
 
 .login-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
     margin:20vh 35vw;
     padding: 10vh 5vw;
     border-radius: 0.7em;
@@ -86,5 +90,16 @@ html, body {
 .login-form input.submit:hover {
     background-color: #068D9D;
     color: white;
+}
+
+.flash-message {
+    border-radius: 5px;
+    background-color: rgb(253, 100, 100);
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 1.5em;
+    width: 17vw;
+    padding: 30px 2vw;
+    text-justify: justify;
 }
 

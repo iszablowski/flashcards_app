@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% block signup %}
 <div class="login-panel">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="flash-message">{{messages[0]}}</div>
+        {% endif %}
+    {% endwith %}
     <form method="POST" action="/auth/signup" class="login-form">
         <input name="username" class="username" placeholder="Username" required>
         <input name="password" type="password" class="password" placeholder="Password" required>
