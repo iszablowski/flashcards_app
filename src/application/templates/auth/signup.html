@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% block signup %}
 <div class="login-panel">
-    <form class="login-form">
-        <input class="username" placeholder="Username">
-        <input type="password" class="password" placeholder="Password">
-        <input type="password" class="password" placeholder="Password Confirmation">
+    <form method="POST" action="/auth/signup" class="login-form">
+        <input name="username" class="username" placeholder="Username" required>
+        <input name="password" type="password" class="password" placeholder="Password" required>
+        <input name="password-confirmation" type="password" class="password" placeholder="Password Confirmation" required>
         <input type="submit" class="submit" value="Sign up">
     </form>
 </div>
