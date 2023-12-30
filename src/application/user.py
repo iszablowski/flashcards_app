@@ -1,10 +1,12 @@
 from flask import Blueprint, request, url_for, redirect, render_template
+from flask_login import login_required, current_user
 
-user = Blueprint('user', __name__, url_prefix='/user')
+user = Blueprint('user', __name__, url_prefix='/profile')
 
-@user.route('/<user_name>', methods=['GET'])
-def user_page(user_name):
-    return f'<h3>{user_name}</h3>'
+@user.route('/', methods=['GET'])
+@login_required
+def user_page():
+    return render_template('base.html', user_name=current_user.name, logged_in=current_user.is_authenticated)
 
 @user.route('/settings', methods=['GET', 'POST'])
 def user_settings():

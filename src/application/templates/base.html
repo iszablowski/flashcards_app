@@ -15,8 +15,13 @@
                     <a class="nav-link" href="{{ url_for('home.home_page') }}">Train</a>
                 </div>
                 <div class="nav nav-user">
-                    <a class="nav-link" href="{{ url_for('auth.login') }}">Sign in</a>
-                    <a class="nav-link" href="{{ url_for('auth.sign_up') }}">Sign up</a>
+                    {% if not logged_in %}
+                        <a class="nav-link" href="{{ url_for('auth.login') }}">Log in</a>
+                        <a class="nav-link" href="{{ url_for('auth.sign_up') }}">Sign up</a>
+                    {% else %}
+                        <a class="nav-link" href="{{ url_for('user.user_page') }}">{{ user_name }}</a>
+                        <a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a> 
+                    {% endif %}
                 </div>
             </nav>
         </div>

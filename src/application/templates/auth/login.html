@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% block signin %}
 <div class="login-panel">
-    <form class="login-form">
-        <input name="name" class="username" placeholder="Username" required>
+    <form action="/auth/login" method="POST" class="login-form">
+        <input name="username" class="username" placeholder="Username" required>
         <input name="password" type="password" class="password" placeholder="Password" required>
         <input type="submit" class="submit" value="Sign in">
     </form>

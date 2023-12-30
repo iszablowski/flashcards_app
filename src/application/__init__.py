@@ -1,7 +1,8 @@
 from flask import Flask
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
-import os
+from datetime import timedelta
+from os import getenv
 
 db = SQLAlchemy()
 login_manager = LoginManager()
@@ -10,8 +11,9 @@ def create_app():
 
     app = Flask(__name__)
 
-    app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+    app.config['SECRET_KEY'] = getenv('SECRET_KEY')
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
+    app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=5)
 
     db.init_app(app)
 
