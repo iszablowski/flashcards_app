@@ -103,3 +103,22 @@ html, body {
     text-justify: justify;
 }
 
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #F4F3EE;
+    font-family: Arial, sans-serif;
+}
+
+.hero h1 {
+    margin: 0px;
+    padding-top: 30vh;
+    padding-bottom: 1vh;
+    font-size: 35px;
+}
+
+.hero h {
+    font-size: 20px;
+}
+
