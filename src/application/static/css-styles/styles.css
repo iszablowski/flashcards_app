@@ -13,6 +13,7 @@ html, body {
 .header {
     padding: 5vh 10vw;
     background-color: #2B4162;
+    box-shadow: 2px 2px 40px 5px rgba(0, 0, 0, 0.226);
     
 }
 
@@ -56,12 +57,14 @@ html, body {
     padding: 10vh 5vw;
     border-radius: 0.7em;
     background-color: #F4F3EE;
+    box-shadow: 1px 1px 40px 4px rgba(0, 0, 0, 0.226);
 }
 
 .login-form .username,
 .login-form .password {
     border-radius: 5px;
-    border: 1px solid #2B4162;
+    border: none;
+    outline: 1px solid #2B4162;
     width: 20vw;
     background-color: rgb(240, 240, 240);
     padding: 15px 10px;
@@ -71,8 +74,7 @@ html, body {
 
 .login-form .username:focus,
 .login-form .password:focus {
-    outline: none;
-    border:2px solid #068D9D;
+    outline :2px solid #068D9D;
 }
 
 .login-form .submit {
