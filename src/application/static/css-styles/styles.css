@@ -128,5 +128,48 @@ html, body {
     margin: 5vh 10vw;
     background-color: #F4F3EE;
     border-radius: 5px;
+    box-shadow: 1px 1px 40px 4px rgba(0, 0, 0, 0.226);
 }
 
+.main-collections {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vh;
+    padding: 3vh 0;
+}
+
+.collection, .flashcard {
+    background-color: #2B4162;
+    border-radius: 15px;
+    padding: 2vh 1vw;
+    margin: 0 2vw;
+    transition: 30ms linear all;
+    box-shadow: 1px 1px 10px 4px rgba(0, 0, 0, 0.226);
+    overflow-wrap: break-word;
+}
+
+.flashcard {
+    gap: 2vw;
+    display: flex;
+}
+
+.collection a {
+    text-decoration: none;
+    color: #F4F3EE;
+    font-family: Arial, sans-serif;
+    font-size: x-large;
+}
+
+.collection:hover {
+    outline: 4px solid #068D9D;
+}
+
+#front {
+    width: 25vw;
+}
+
+#front, #description {
+    color: #F4F3EE;
+    font-family: Arial, sans-serif;
+    font-size: x-large;
+}

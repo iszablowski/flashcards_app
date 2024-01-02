@@ -4,11 +4,12 @@
 {% block signin %}{% endblock %}
 {% block signup %}{% endblock %}
 {% block hero %}
-<div class="main-collection main-profile">
+<div class="main-collections main-profile">
     {% if collection.count() %}
         {% for flashcard in collection %}
             <div class="flashcard">
-                {{flashcard.card_front}} - {{flashcard.card_description}}
+                <div id="front">{{flashcard.card_front}}</div>
+                <div id="description">| {{flashcard.card_description}}</div>
             </div>
         {% endfor %}
     {% else %}

@@ -12,7 +12,7 @@
             <nav class="navbar">
                 <div class="nav nav-app">
                     <a class="nav-link" id="app-name" href="{{ url_for('home.home_page') }}">Home</a>
-                    <a class="nav-link" href="{{ url_for('home.home_page') }}">Train</a>
+                    <a class="nav-link" href="{{ url_for('flashcards.flashcards_collection') }}">Train</a>
                 </div>
                 <div class="nav nav-user">
                     {% if not logged_in %}
@@ -31,7 +31,7 @@
         {% block hero %}
         <div class="hero">
             <h1>Flashcards App</h1>
-            <h>App where you can train on your own and many other flashcards.</h>
+            <h>App where you can train on your own flashcards.</h>
         </div>
         {% endblock %}
     </div>
