@@ -7,16 +7,46 @@ from .models.flashcard_model import Flashcard
 cards = Blueprint('flashcards', __name__, url_prefix='/flashcards')
 
 
+@cards.route('/collection/<collection_id>', methods=['GET'])
 @login_required
+def flashcards(collection_id):
+
+    collection = FlashcardsCollection.query.filter_by(collection_id=collection_id).first()
+
+    if not collection:
+        return 'error-collection does not exist'
+    
+    collection_author_id = collection.author_id
+
+    if collection_author_id != current_user.id:
+        return 'error-this is not your collection'
+    
+    flashcards_collection = Flashcard.query.filter_by(collection_id=collection_id)
+
+    return render_template('/flashcards/flashcards.html',
+                           user_name=current_user.name,
+                           logged_in=current_user.is_authenticated,
+                           collection=flashcards_collection,
+                           collection_name=collection.collection_name)
+
 @cards.route('/collection', methods=['GET'])
+@login_required
 def flashcards_collection():
-    return '<h3>flashcards<h3>'
+
+    user_collections = FlashcardsCollection.query.filter_by(author_id=current_user.id)
+
+    return render_template('flashcards/flashcards_collection.html',
+                           user_name=current_user.name,
+                           logged_in=current_user.is_authenticated,
+                           collections=user_collections)
 
 @cards.route('/create_collection', methods=['GET', 'POST'])
 @login_required
 def create_collection():
     if request.method == 'GET':
-        return render_template('flashcards/create_collection.html', user_name=current_user.name, logged_in=current_user.is_authenticated)
+        return render_template('flashcards/create_collection.html',
+                               user_name=current_user.name,
+                               logged_in=current_user.is_authenticated)
     
     if request.method == 'POST':
 
@@ -27,13 +57,15 @@ def create_collection():
         new_collection = FlashcardsCollection(author_id=current_user.id, collection_name=collection_name)
         db.session.add(new_collection)
 
+        db.session.commit()
+
         for front, description in zip(card_fronts, card_descriptions):
             new_flashcard = Flashcard(collection_id=new_collection.collection_id, card_front=front, card_description=description)
             db.session.add(new_flashcard)
         
         db.session.commit()
 
-        return redirect(url_for('flashcards.flashcards_collection'))
+        return redirect(url_for('flashcards.flashcards', collection_id=new_collection.collection_id))
 
         
 
