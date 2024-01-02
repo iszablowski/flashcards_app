@@ -6,6 +6,7 @@
 {% block hero %}
 <div class="main-edit main-profile">
     <form method="POST", action="/flashcards/create_collection">
+        <input name="collection-name" class="collection-name" placeholder="Collection name">
         <div class="all-flashcards">
             <div class="flashcard-row">
                 <input type="text" name="card-front" class="card-front" maxlength="200" placeholder="Front">

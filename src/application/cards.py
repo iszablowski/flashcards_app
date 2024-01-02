@@ -1,18 +1,41 @@
 from flask import Blueprint, request, url_for, redirect, render_template
 from flask_login import login_required, current_user
+from . import db
+from .models.collection_model import FlashcardsCollection
+from .models.flashcard_model import Flashcard
 
 cards = Blueprint('flashcards', __name__, url_prefix='/flashcards')
 
 
 @login_required
-@cards.route('/', methods=['GET'])
-def flashcards():
+@cards.route('/collection', methods=['GET'])
+def flashcards_collection():
     return '<h3>flashcards<h3>'
 
 @cards.route('/create_collection', methods=['GET', 'POST'])
 @login_required
 def create_collection():
-    return render_template('flashcards/create_collection.html', user_name=current_user.name, logged_in=current_user.is_authenticated)
+    if request.method == 'GET':
+        return render_template('flashcards/create_collection.html', user_name=current_user.name, logged_in=current_user.is_authenticated)
+    
+    if request.method == 'POST':
+
+        collection_name = request.form.get('collection-name')
+        card_fronts = request.form.getlist('card-front')
+        card_descriptions = request.form.getlist('card-description')
+
+        new_collection = FlashcardsCollection(author_id=current_user.id, collection_name=collection_name)
+        db.session.add(new_collection)
+
+        for front, description in zip(card_fronts, card_descriptions):
+            new_flashcard = Flashcard(collection_id=new_collection.collection_id, card_front=front, card_description=description)
+            db.session.add(new_flashcard)
+        
+        db.session.commit()
+
+        return redirect(url_for('flashcards.flashcards_collection'))
+
+        
 
 @login_required
 @cards.route('/edit_collection', methods=['GET', 'POST'])
