@@ -5,13 +5,16 @@
 {% block signup %}{% endblock %}
 {% block hero %}
 <div class="main-edit main-profile">
-    <div class="flashcard-row">
-        <form action="/flashcards/create_collection", method="POST">
-            <input class="card-front" maxlength="200" placeholder="Front">
-            <input class="card-description" maxlength="1000" placeholder="Description">
-            <input type="submit">
-        </form>
-        <button id="add-row-btn">Add row</button>
-    </div>
+    <form method="POST", action="/flashcards/create_collection">
+        <div class="all-flashcards">
+            <div class="flashcard-row">
+                <input type="text" name="card-front" class="card-front" maxlength="200" placeholder="Front">
+                <input type="text" name="card-description" class="card-description" maxlength="1000" placeholder="Description">
+            </div>
+        </div>
+        <button type="button" id="add-row-btn">Add row</button>
+        <input type="submit">
+    </form>
 </div>
+<script src="{{ url_for('static', filename='js-scripts/adding_flashcard.js') }}"></script>
 {% endblock %}
