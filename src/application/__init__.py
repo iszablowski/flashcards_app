@@ -29,10 +29,12 @@ def create_app():
     from .cards import cards
     app.register_blueprint(cards)
 
+    from .models.user_model import User
+    from .models.collection_model import FlashcardsCollection
+    from .models.flashcard_model import Flashcard
+
     with app.app_context():
         db.create_all()
-
-    from .models.user_model import User
 
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)

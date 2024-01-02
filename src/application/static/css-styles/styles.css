@@ -124,3 +124,9 @@ html, body {
     font-size: 20px;
 }
 
+.main-profile {
+    margin: 5vh 10vw;
+    background-color: #F4F3EE;
+    border-radius: 5px;
+}
+
