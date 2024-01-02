@@ -29,8 +29,14 @@ def login():
             flash('Wrong password.')
             return redirect(url_for('auth.login'))
         
+        redirect_to = request.form.get('redirect-to')
+
+        if redirect_to == 'None':
+            redirect_to = '/profile'
+
         login_user(user)
-        return redirect(url_for('user.user_page'))
+
+        return redirect(redirect_to)
         
 @auth.route('/signup', methods=['GET', 'POST'])
 def sign_up():

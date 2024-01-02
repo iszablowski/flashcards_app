@@ -10,10 +10,13 @@
             <div class="flash-message">{{messages[0]}}</div>
         {% endif %}
     {% endwith %}
+    {% with request = request.args.get('next')%}
     <form action="/auth/login" method="POST" class="login-form">
         <input name="username" class="username" placeholder="Username" required>
         <input name="password" type="password" class="password" placeholder="Password" required>
         <input type="submit" class="submit" value="Log in">
+        <input name="redirect-to" type="hidden" value="{{request}}">
     </form>
+    {% endwith %}
 </div>
 {% endblock %}
