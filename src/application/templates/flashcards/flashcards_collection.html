@@ -5,6 +5,9 @@
 {% block signup %}{% endblock %}
 {% block hero %}
 <div class="main-collections main-profile">
+    <div id="create-btn" class="action-btns">
+        <a href="{{url_for('flashcards.create_collection')}}"><button class="submit">Create collection</button></a>
+    </div>
     {% if collections.count() %}
         {% for collection in collections %}
             <div class="collection">

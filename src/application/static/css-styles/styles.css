@@ -77,7 +77,8 @@ html, body {
     outline :2px solid #068D9D;
 }
 
-.login-form .submit {
+.login-form .submit,
+.action-btns .submit {
     box-sizing: content-box;
     border-radius: 5px;
     border: 2px solid #068D9D;
@@ -87,11 +88,17 @@ html, body {
     font-family: Arial, sans-serif;
     font-size: 1.2em;
     width: 20vw;
+    cursor: pointer;
 }
 
-.login-form input.submit:hover {
+.login-form input.submit:hover,
+.action-btns button:hover {
     background-color: #068D9D;
     color: white;
+}
+
+#create-btn {
+    justify-content: center;
 }
 
 .flash-message {
@@ -146,6 +153,14 @@ html, body {
     transition: 30ms linear all;
     box-shadow: 1px 1px 10px 4px rgba(0, 0, 0, 0.226);
     overflow-wrap: break-word;
+}
+
+.action-btns {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 3vw;
 }
 
 .flashcard {

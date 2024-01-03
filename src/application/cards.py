@@ -104,7 +104,15 @@ def remove_collection():
     return redirect(url_for('flashcards.flashcards_collection'))
 
 
-@cards.route('/training', methods=['GET'])
+@cards.route('/collection/<collection_id>/train', methods=['GET'])
 @login_required
-def flashcards_training():
-    return '<h3>training</h3>'
+def flashcards_training(collection_id):
+    collection_to_train = FlashcardsCollection.query.filter_by(collection_id=collection_id).first()
+
+    if not collection_to_train:
+        return 'error-collection does not exist'
+
+    if collection_to_train.author_id != current_user.id:
+        return 'error-this is not your collection'
+    
+    return collection_id
