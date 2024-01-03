@@ -69,22 +69,42 @@ def create_collection():
 
         
 
-@login_required
-@cards.route('/edit_collection', methods=['GET', 'POST'])
-def edit_collection():
-    return 1
 
+@cards.route('/edit_collection', methods=['GET', 'POST'])
 @login_required
+def edit_collection():
+    return '1'
+
 @cards.route('/add', methods=['GET'])
+@login_required
 def add_flashcard():
     return '<h3>add</h3>'
 
-@login_required
-@cards.route('/remove', methods=['GET'])
-def remove_flashcard():
-    return '<h3>rmeove</h3>'
 
+@cards.route('/remove_collection', methods=['GET'])
 @login_required
+def remove_collection():
+    collection_to_remove_id = request.args.get('collection_id')
+    collection_to_remove = FlashcardsCollection.query.filter_by(collection_id=collection_to_remove_id).first()
+
+    if not collection_to_remove:
+        return 'error-collection does not exist'
+
+    if collection_to_remove.author_id != current_user.id:
+        return 'error-this is not your collection'
+
+    flashcards_to_remove = Flashcard.query.filter_by(collection_id=collection_to_remove_id)
+
+    db.session.delete(collection_to_remove)
+    for flashcard in flashcards_to_remove:
+        db.session.delete(flashcard)
+
+    db.session.commit()
+
+    return redirect(url_for('flashcards.collection'))
+
+
 @cards.route('/training', methods=['GET'])
+@login_required
 def flashcards_training():
     return '<h3>training</h3>'
