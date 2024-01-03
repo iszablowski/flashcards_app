@@ -101,7 +101,7 @@ def remove_collection():
 
     db.session.commit()
 
-    return redirect(url_for('flashcards.collection'))
+    return redirect(url_for('flashcards.flashcards_collection'))
 
 
 @cards.route('/training', methods=['GET'])
