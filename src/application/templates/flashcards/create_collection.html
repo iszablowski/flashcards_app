@@ -4,17 +4,22 @@
 {% block signin %}{% endblock %}
 {% block signup %}{% endblock %}
 {% block hero %}
-<div class="main-edit main-profile">
-    <form method="POST", action="/flashcards/create_collection">
-        <input name="collection-name" class="collection-name" placeholder="Collection name" required>
+<div class="main-profile">
+    <form method="POST", class="main-collections main-edit" action="/flashcards/create_collection">
+        <div id="collection-name-div">
+            <input name="collection-name" id="collection-name" class="card" placeholder="Collection name" required>
+        </div>
         <div class="all-flashcards">
-            <div class="flashcard-row">
-                <input type="text" name="card-front" class="card-front" maxlength="200" placeholder="Front" required>
-                <input type="text" name="card-description" class="card-description" maxlength="1000" placeholder="Description" required>
+            <div class="flashcard-row flashcard">
+                <input type="text" name="card-front" class="card card-front" maxlength="200" placeholder="Front" required>
+                <span id="break">|</span>
+                <input type="text" name="card-description" class="card card-description" maxlength="1000" placeholder="Description" required>
             </div>
         </div>
-        <button type="button" id="add-row-btn">Add row</button>
-        <input type="submit">
+        <div class="action-btns" id="create-btns">
+            <button class="submit" type="button" id="add-row-btn">Add row</button>
+            <input class="submit" type="submit" value="Create">
+        </div>
     </form>
 </div>
 <script src="{{ url_for('static', filename='js-scripts/adding_flashcard.js') }}"></script>

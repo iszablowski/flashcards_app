@@ -92,7 +92,7 @@ html, body {
 }
 
 .login-form input.submit:hover,
-.action-btns button:hover {
+.action-btns :hover {
     background-color: #068D9D;
     color: white;
 }
@@ -166,6 +166,7 @@ html, body {
 .flashcard {
     gap: 2vw;
     display: flex;
+    align-items: center;
 }
 
 .collection a {
@@ -187,4 +188,45 @@ html, body {
     color: #F4F3EE;
     font-family: Arial, sans-serif;
     font-size: x-large;
+}
+
+.card {
+    border-radius: 18px;
+    padding: 1vh 1vw;
+    outline: 3px solid #068D9D;
+    border: none;
+    background-color: transparent;
+    color: white;
+    font-size: x-large;
+}
+
+.flashcard-row {
+    padding-left: 13vw;
+    padding-right: 13vw;
+    justify-content: space-between;
+}
+
+#collection-name {
+    color: black;
+    width: 20vw;
+}
+
+#collection-name-div {
+    display: flex;
+    justify-content: center;
+}
+
+#create-btns {
+    justify-content: space-evenly;
+}
+
+.all-flashcards {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vh;
+}
+
+#break {
+    font-size: 3.2vh;
+    color: #F4F3EE;
 }
