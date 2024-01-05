@@ -3,6 +3,7 @@ from flask_login import login_required, current_user
 from . import db
 from .models.collection_model import FlashcardsCollection
 from .models.flashcard_model import Flashcard
+import json
 
 cards = Blueprint('flashcards', __name__, url_prefix='/flashcards')
 
@@ -115,4 +116,9 @@ def flashcards_training(collection_id):
     if collection_to_train.author_id != current_user.id:
         return 'error-this is not your collection'
     
-    return collection_id
+    flashcards_to_train_query = Flashcard.query.filter_by(collection_id=collection_to_train.collection_id)
+
+    flashcards_to_train_dict = { card.card_front: card.card_description for card in flashcards_to_train_query}
+
+    return render_template('flashcards/train.html',
+                           flashcards=json.dumps(flashcards_to_train_dict))

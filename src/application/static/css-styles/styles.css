@@ -230,3 +230,23 @@ html, body {
     font-size: 3.2vh;
     color: #F4F3EE;
 }
+
+.flashcard-train {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5vw;
+    margin-top: 10vh;
+}
+
+.train-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #2B4162;
+    border-radius: 20px;
+    color: white;
+    height: 50vh;
+    width: 26vw;
+    font-size: 50px;
+}

@@ -14,4 +14,9 @@ function add_row() {
     all_flashcards.appendChild(new_row);
 }
 
+function scroll_smooth_to_bottom() {
+    window.scrollTo({left: 0, top: document.body.scrollHeight, behavior: 'smooth'});
+}
+
 add_row_btn.addEventListener('click', add_row);
+add_row_btn.addEventListener('click', scroll_smooth_to_bottom)
