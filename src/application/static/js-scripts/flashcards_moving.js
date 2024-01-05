@@ -6,11 +6,12 @@ const flashcard_number = document.querySelector('#flashcard-number');
 
 let front; let back;
 let current_flashcard_index = 0;
-const max_flashcard_index = Object.keys(flashcards).length-1;
+const max_flashcard_index = flashcards.length-1;
 
 function get_current_flashcard(index) {
-    let front = Object.keys(flashcards)[index];
-    return [front, flashcards[front]];
+    let front = flashcards[index][0];
+    let back = flashcards[index][1];
+    return [front, back];
 }
 
 function update_flashcard_number() {
@@ -60,6 +61,5 @@ function previous_card() {
 card.addEventListener('click', set_flashcard_side);
 button_next.addEventListener('click', next_card);
 button_previous.addEventListener('click', previous_card);
-
 
 init_training();

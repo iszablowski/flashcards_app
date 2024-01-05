@@ -118,10 +118,10 @@ def flashcards_training(collection_id):
     
     flashcards_to_train_query = Flashcard.query.filter_by(collection_id=collection_to_train.collection_id)
 
-    flashcards_to_train_dict = { card.card_front: card.card_description for card in flashcards_to_train_query}
+    flashcards_to_train_list = [[card.card_front, card.card_description] for card in flashcards_to_train_query]
 
     return render_template('flashcards/train.html',
-                           flashcards=json.dumps(flashcards_to_train_dict),
+                           flashcards=json.dumps(flashcards_to_train_list),
                            user_name=current_user.name,
                            logged_in=current_user.is_authenticated,
                            collection_name=collection_to_train.collection_name)
