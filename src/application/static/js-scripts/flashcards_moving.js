@@ -2,6 +2,7 @@ const card_text = document.querySelector('#card-value');
 const button_previous = document.querySelector('#go-previous');
 const button_next = document.querySelector('#go-next');
 const card = document.querySelector('.train-card');
+const flashcard_number = document.querySelector('#flashcard-number');
 
 let front; let back;
 let current_flashcard_index = 0;
@@ -12,10 +13,15 @@ function get_current_flashcard(index) {
     return [front, flashcards[front]];
 }
 
+function update_flashcard_number() {
+    flashcard_number.innerHTML = `${current_flashcard_index+1} / ${max_flashcard_index+1}`;
+}
+
 function init_training() {
     [front, back] = get_current_flashcard(current_flashcard_index);
     card_text.value = 'front';
     card_text.innerHTML = front;
+    update_flashcard_number();
 }
 
 function set_flashcard_side() {
@@ -39,6 +45,7 @@ function next_card() {
     if (current_flashcard_index < max_flashcard_index) {
         current_flashcard_index++;
         set_flashcard_content();
+        update_flashcard_number();
     }
 }
 
@@ -46,6 +53,7 @@ function previous_card() {
     if (current_flashcard_index > 0) {
         current_flashcard_index--;
         set_flashcard_content();
+        update_flashcard_number();
     }
 }
 

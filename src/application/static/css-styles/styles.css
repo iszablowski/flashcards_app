@@ -236,7 +236,7 @@ html, body {
     align-items: center;
     justify-content: center;
     gap: 5vw;
-    margin-top: 10vh;
+    margin-top: 5vh;
 }
 
 .train-card {
@@ -249,4 +249,44 @@ html, body {
     height: 50vh;
     width: 26vw;
     font-size: 50px;
+    font-family: Arial, sans-serif;
+}
+
+.step-btn {
+    font-size: 100px;
+    background-color: #2B4162;
+    border: none;
+    border-radius: 100px;
+    padding-bottom: 13px;
+    padding-top: 0px;
+    transition: 350ms ease color;
+}
+
+#go-next {
+    padding-left: 50px;
+    padding-right: 44px ;
+}
+
+#go-previous {
+    padding-right: 50px;
+    padding-left: 44px ;
+}
+
+.step-btn:hover {
+    color: #F4F3EE;
+}
+
+.step-btn:active {
+    transform: scale(1.1);
+}
+
+.collection-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5vh;
+    font-family: Arial, sans-serif;
+    font-size: 40px;
+    color: #F4F3EE;
 }

@@ -4,12 +4,18 @@
 {% block signin %}{% endblock %}
 {% block signup %}{% endblock %}
 {% block hero %}
-<div class="flashcard-train">
-    <button id="go-previous">Previous</button>
-    <div class="train-card">
-        <span id="card-value" value="front"></span>
+<div>
+    <div class="collection-info">
+        <span>{{collection_name}}</span>
+        <span id="flashcard-number"></span>
     </div>
-    <button id="go-next">Next</button>
+    <div class="flashcard-train">
+        <button id="go-previous" class="step-btn">&#8249;</button>
+        <div class="train-card">
+            <span id="card-value" value="front"></span>
+        </div>
+        <button id="go-next" class="step-btn">&#8250;</button>
+    </div>
 </div>
 <script>
     let flashcards = JSON.parse('{{ flashcards | safe }}')
