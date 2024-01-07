@@ -202,7 +202,7 @@ html, body {
 
 .flashcard-row {
     padding-left: 13vw;
-    padding-right: 13vw;
+    padding-right: 3.4vw;
     justify-content: space-between;
 }
 
@@ -289,4 +289,12 @@ html, body {
     font-family: Arial, sans-serif;
     font-size: 40px;
     color: #F4F3EE;
+}
+
+#remove-btn {
+    font-size: 30px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: gray;
 }
