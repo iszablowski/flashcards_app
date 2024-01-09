@@ -60,6 +60,21 @@ function previous_card() {
 
 card.addEventListener('click', set_flashcard_side);
 button_next.addEventListener('click', next_card);
+document.addEventListener('keydown', (event) => {
+    if (event.keyCode === 39) {
+        next_card();
+    }
+});
 button_previous.addEventListener('click', previous_card);
+document.addEventListener('keydown', (event) => {
+    if (event.keyCode === 37) {
+        previous_card();
+    }
+});
+document.addEventListener('keypress', (event) => {
+    if (event.keyCode === 32) {
+        set_flashcard_side();
+    }
+})
 
 init_training();
