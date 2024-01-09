@@ -58,6 +58,10 @@ function previous_card() {
     }
 }
 
+function is_focused(element) {
+    return (element === document.activeElement);
+}
+
 card.addEventListener('click', set_flashcard_side);
 button_next.addEventListener('click', next_card);
 document.addEventListener('keydown', (event) => {
@@ -72,7 +76,7 @@ document.addEventListener('keydown', (event) => {
     }
 });
 document.addEventListener('keypress', (event) => {
-    if (event.keyCode === 32) {
+    if (event.keyCode === 32 && !(is_focused(button_next) || is_focused(button_previous))) {
         set_flashcard_side();
     }
 })
