@@ -2,9 +2,9 @@ const add_row_btn = document.querySelector('#add-row-btn');
 const flashcard_row = document.querySelector('.flashcard-row');
 const all_flashcards = document.querySelector('.all-flashcards');
 const remove_row_btn = document.querySelector('#remove-row-btn');
-const remove_btn = document.querySelector('#remove-btn');
+const remove_btns = document.querySelectorAll('#remove-btn');
 
-let new_row_index = 1;
+let new_row_index = document.querySelectorAll('.flashcard-row').length;
 
 function clear_inputs(inputs) {
     inputs.forEach((input) => {
@@ -37,4 +37,6 @@ function remove_row(e) {
 
 add_row_btn.addEventListener('click', add_row);
 add_row_btn.addEventListener('click', scroll_smooth_to_bottom);
-remove_btn.addEventListener('click', remove_row);
+remove_btns.forEach((remove_btn) => {
+    remove_btn.addEventListener('click', remove_row);
+});

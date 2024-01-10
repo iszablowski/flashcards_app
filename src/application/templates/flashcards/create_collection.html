@@ -5,17 +5,36 @@
 {% block signup %}{% endblock %}
 {% block hero %}
 <div class="main-profile">
+    {% if flashcards %}
+    <form method="POST", class="main-collections main-edit" action="/flashcards/collection/{{flashcards.first().collection_id}}/edit_collection">
+    {% else %}
     <form method="POST", class="main-collections main-edit" action="/flashcards/create_collection">
+    {% endif %}
         <div id="collection-name-div">
+            {% if flashcards %}
+            <input value="{{collection_name}}" name="collection-name" id="collection-name" class="card" placeholder="Collection name" required>
+            {% else %}
             <input name="collection-name" id="collection-name" class="card" placeholder="Collection name" required>
+            {% endif %}
         </div>
         <div class="all-flashcards">
-            <div class="flashcard-row flashcard" value="0">
-                <input type="text" name="card-front" class="card card-front" maxlength="200" placeholder="Front" required>
-                <span id="break">|</span>
-                <input type="text" name="card-description" class="card card-description" maxlength="1000" placeholder="Description" required>
-                <button type="button" value="0" id="remove-btn">X</button>
-            </div>
+            {% if flashcards %}
+                {% for card in flashcards %}
+                <div class="flashcard-row flashcard" value="{{loop.index0}}">
+                    <input value="{{card.card_front}}" type="text" name="card-front" class="card card-front" maxlength="200" placeholder="Front" required>
+                    <span id="break">|</span>
+                    <input  value="{{card.card_description}}" type="text" name="card-description" class="card card-description" maxlength="1000" placeholder="Description" required>
+                    <button type="button" value="{{loop.index0}}" id="remove-btn">X</button>
+                </div>                
+                {% endfor %}
+            {% else %}
+                <div class="flashcard-row flashcard" value="0">
+                    <input type="text" name="card-front" class="card card-front" maxlength="200" placeholder="Front" required>
+                    <span id="break">|</span>
+                    <input type="text" name="card-description" class="card card-description" maxlength="1000" placeholder="Description" required>
+                    <button type="button" value="0" id="remove-btn">X</button>
+                </div>
+            {% endif %}
         </div>
         <div class="action-btns" id="create-btns">
             <button class="submit" type="button" id="add-row-btn">Add row</button>

@@ -6,9 +6,11 @@
 {% block hero %}
 <div class="main-collections main-profile">
     <div class="action-btns">
-        <a href="{{url_for('flashcards.flashcards_training', collection_id=collection.first().collection_id)}}"><button class="submit">Train</button></a>
-        <a href="{{url_for('flashcards.edit_collection')}}"><button class="submit">Edit</button></a>
-        <a href="{{url_for('flashcards.remove_collection', collection_id=collection.first().collection_id)}}"><button class="submit">Remove</button></a>
+        {% with collection_id = collection.first().collection_id %}
+        <a href="{{url_for('flashcards.flashcards_training', collection_id=collection_id)}}"><button class="submit">Train</button></a>
+        <a href="{{url_for('flashcards.edit_collection', collection_id=collection_id)}}"><button class="submit">Edit</button></a>
+        <a href="{{url_for('flashcards.remove_collection', collection_id=collection_id)}}"><button class="submit">Remove</button></a>
+        {%  endwith %}
     </div>
     {% if collection.count() %}
         {% for flashcard in collection %}

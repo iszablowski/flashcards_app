@@ -71,10 +71,25 @@ def create_collection():
         
 
 
-@cards.route('/edit_collection', methods=['GET', 'POST'])
+@cards.route('/collection/<collection_id>/edit_collection', methods=['GET', 'POST'])
 @login_required
-def edit_collection():
-    return '1'
+def edit_collection(collection_id):
+    if request.method == 'GET':
+        collection_to_edit = FlashcardsCollection.query.filter_by(collection_id=collection_id).first()
+
+        if not collection_to_edit:
+            return 'error-collection does not exist'
+        
+        if collection_to_edit.author_id != current_user.id:
+            return 'error-this is not yout collection'
+        
+        flashcards_to_edit = Flashcard.query.filter_by(collection_id=collection_id)
+
+        return render_template('flashcards/create_collection.html',
+                               user_name=current_user.name,
+                               logged_in=current_user.is_authenticated,
+                               flashcards=flashcards_to_edit,
+                               collection_name=collection_to_edit.collection_name)
 
 @cards.route('/add', methods=['GET'])
 @login_required
