@@ -74,9 +74,9 @@ def create_collection():
 @cards.route('/collection/<collection_id>/edit_collection', methods=['GET', 'POST'])
 @login_required
 def edit_collection(collection_id):
-    if request.method == 'GET':
-        collection_to_edit = FlashcardsCollection.query.filter_by(collection_id=collection_id).first()
+    collection_to_edit = FlashcardsCollection.query.filter_by(collection_id=collection_id).first()
 
+    if request.method == 'GET':
         if not collection_to_edit:
             return 'error-collection does not exist'
         
@@ -90,6 +90,26 @@ def edit_collection(collection_id):
                                logged_in=current_user.is_authenticated,
                                flashcards=flashcards_to_edit,
                                collection_name=collection_to_edit.collection_name)
+
+    if request.method == 'POST':
+        new_collection_name = request.form.get('collection-name')
+        new_card_fronts = request.form.getlist('card-front')
+        new_card_descriptions = request.form.getlist('card-description')
+
+        flashcards_to_edit = Flashcard.query.filter_by(collection_id=collection_to_edit.collection_id)
+
+        collection_to_edit.collection_name = new_collection_name
+        
+        for flashcard in flashcards_to_edit:
+            db.session.delete(flashcard)
+        db.session.commit()
+
+        for front, description in zip(new_card_fronts, new_card_descriptions):
+            new_flashcard = Flashcard(collection_id=collection_to_edit.collection_id, card_front=front, card_description=description)
+            db.session.add(new_flashcard)
+        db.session.commit()
+
+        return redirect(url_for('flashcards.flashcards', collection_id=collection_to_edit.collection_id))
 
 @cards.route('/add', methods=['GET'])
 @login_required
