@@ -237,6 +237,7 @@ html, body {
     justify-content: center;
     gap: 5vw;
     margin-top: 5vh;
+    perspective: 1500px;
 }
 
 .train-card {
@@ -298,4 +299,23 @@ html, body {
     border: none;
     cursor: pointer;
     color: gray;
+}
+
+.card_animation {
+    animation-name: flip_card;
+    animation-duration: 75ms;
+    animation-iteration-count: 1;
+}
+
+
+@keyframes flip_card {
+    from {
+        transform: rotateY(0);
+        color: transparent;
+    }
+
+    to {
+        transform: rotateY(180deg);
+        color: transparent;
+    }
 }

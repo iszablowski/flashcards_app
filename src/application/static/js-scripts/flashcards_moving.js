@@ -20,24 +20,24 @@ function update_flashcard_number() {
 
 function init_training() {
     [front, back] = get_current_flashcard(current_flashcard_index);
-    card_text.value = 'front';
+    card_text.className = 'front';
     card_text.innerHTML = front;
     update_flashcard_number();
 }
 
 function set_flashcard_side() {
     
-    if (card_text.value === 'front') {
+    if (card_text.className === 'front') {
         card_text.innerHTML = back;
-        card_text.value = 'back';
-    } else if (card_text.value === 'back') {
+        card_text.className = 'back';
+    } else if (card_text.className === 'back') {
         card_text.innerHTML = front;
-        card_text.value = 'front';
+        card_text.className = 'front';
     }
 }
 
 function set_flashcard_content() {
-    card_text.value = 'front';
+    card_text.className = 'front';
     [front, back] = get_current_flashcard(current_flashcard_index);
     card_text.innerHTML = front;
 }
@@ -62,22 +62,44 @@ function is_focused(element) {
     return (element === document.activeElement);
 }
 
-card.addEventListener('click', set_flashcard_side);
-button_next.addEventListener('click', next_card);
+function animation_restart() {
+    card.classList.remove('card_animation');
+    void card.offsetWidth;
+    card.classList.add('card_animation');
+}
+
+function animation_stop() {
+    card.classList.remove('card_animation');
+}
+
+card.addEventListener('click', () => {
+    set_flashcard_side();
+    animation_restart();
+});
+button_next.addEventListener('click', () => {
+    next_card();
+    animation_stop();
+});
 document.addEventListener('keydown', (event) => {
     if (event.keyCode === 39) {
         next_card();
+        animation_stop();
     }
 });
-button_previous.addEventListener('click', previous_card);
+button_previous.addEventListener('click', () => {
+    previous_card();
+    animation_stop();
+});
 document.addEventListener('keydown', (event) => {
     if (event.keyCode === 37) {
         previous_card();
+        animation_stop();
     }
 });
 document.addEventListener('keypress', (event) => {
     if (event.keyCode === 32 && !(is_focused(button_next) || is_focused(button_previous))) {
         set_flashcard_side();
+        animation_restart();
     }
 })
 
