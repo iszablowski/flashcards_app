@@ -3,6 +3,7 @@ const button_previous = document.querySelector('#go-previous');
 const button_next = document.querySelector('#go-next');
 const card = document.querySelector('.train-card');
 const flashcard_number = document.querySelector('#flashcard-number');
+const shuffle_btn = document.querySelector('#shuffle'); 
 
 let front; let back;
 let current_flashcard_index = 0;
@@ -72,6 +73,20 @@ function animation_stop() {
     card.classList.remove('card_animation');
 }
 
+function shuffle_cards() {
+    current_flashcard_index = max_flashcard_index + 1;
+    let random_index;
+
+    while(current_flashcard_index > 0) {
+        random_index = Math.floor(Math.random() * current_flashcard_index);
+        current_flashcard_index--;
+
+        [flashcards[current_flashcard_index][0], flashcards[random_index][0]] = [flashcards[random_index][0], flashcards[current_flashcard_index][0]];
+        [flashcards[current_flashcard_index][1], flashcards[random_index][1]] = [flashcards[random_index][1], flashcards[current_flashcard_index][1]];
+    }
+    init_training();
+}
+
 card.addEventListener('click', () => {
     set_flashcard_side();
     animation_restart();
@@ -102,5 +117,7 @@ document.addEventListener('keypress', (event) => {
         animation_restart();
     }
 })
+
+shuffle_btn.addEventListener('click', shuffle_cards);
 
 init_training();
