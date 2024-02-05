@@ -11,8 +11,11 @@ def create_app():
 
     app = Flask(__name__)
 
-    app.config['SECRET_KEY'] = getenv('SECRET_KEY')
-    app.config['SQLALCHEMY_DATABASE_URI'] = getenv('SQLALCHEMY_DATABASE_URI')
+    # app.config['SECRET_KEY'] = getenv('SECRET_KEY')
+    app.config['SECRET_KEY'] = getenv('SECRET_KEY_PUBLIC_COLLECTIONS_BRANCHES')
+
+    # app.config['SQLALCHEMY_DATABASE_URI'] = getenv('SQLALCHEMY_DATABASE_URI')
+    app.config['SQLALCHEMY_DATABASE_URI'] = getenv('SQLALCHEMY_DATABASE_PUBLIC_COLLECTIONS_BRANCH_URI')
     app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=10)
 
     db.init_app(app)
