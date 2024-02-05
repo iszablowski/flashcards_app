@@ -6,10 +6,23 @@
 {% block profile %}
 <div class="main-profile">
     <div class="user-information">
-        <span>User information</span>
-    </div>
-    <div class="user-collection">
-        <span>Collection</span>
+        <span id="username-display">Username</span>
+        <div class="username-info">
+            <div class="username">
+                <span id="username">{{user_name}}</span>
+                <button id="set-username-btn">&#9998;</button>
+            </div>
+            <form method="POST" action="{{ url_for('user.set_username')}}" class="login-form new-usrname">
+                <input name="new-username" id="new-usrnm" class="username" placeholder="New username" type=hidden>
+                <input type="submit" class="submit" hidden="hidden">
+            </form>
+        </div>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="flash-message">{{messages[0]}}</div>
+            {% endif %}
+        {% endwith %}
     </div>
 </div>
+<script src="{{ url_for('static', filename='js-scripts/setting_username.js') }}"></script>
 {% endblock %}

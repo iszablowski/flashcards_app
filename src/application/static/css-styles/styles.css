@@ -338,3 +338,38 @@ html, body {
     background-color: white;
     color: #068D9D;
 }
+#username-display {
+    color: #2B4162;
+    font-family: Arial, sans-serif;
+    font-size: 30px;
+}
+
+.user-information {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    gap: 15px;
+}
+
+#username {
+    color: #068D9D;
+    font-family: Arial, sans-serif;
+    font-size: 40px;
+}
+
+.username-info {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+}
+
+#set-username-btn {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 30px;
+}
+
+.login-form.new-usrname {
+    align-items: start;
+}
