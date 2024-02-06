@@ -18,9 +18,18 @@ Firstly, you have to clone repository into directory you want it to be.
 git clone https://github.com/iszablowski/flashcards_app.git
 ```
 
-
 ### Virtual environment
 
-I recommend you setting up virtual environment before installing packages. You can choose any virtual environmentm you want, but if you have never worked with one, [here's the link](https://www.freecodecamp.org/news/how-to-setup-virtual-environments-in-python/) for tutorial how to set it up.
+I recommend you setting up virtual environment before installing packages. You can choose any virtual environmentm you want, but if you have never worked with one, [here's the link](https://www.freecodecamp.org/news/how-to-setup-virtual-environments-in-python/) for tutorial how to set it up. You should be setting it in main directory.
 
 ### Modules
+
+After successfully setting up your virtual environment, you need to install all additional python packages for app to work. There is an `install_requirements.sh` script in main directory. After running this script you will have all required packages for this project.
+
+### Setting environment variables for app
+
+I suggest making a `.env` file in your main directory, and putting your variables there, but you can also set it with Bash built-in export command.\
+If you want to be able to start your app with `flask run` from main directiory, set your variable like this.
+```bash
+FLASK_RUN=src/application
+```
