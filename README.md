@@ -31,5 +31,5 @@ After successfully setting up your virtual environment, you need to install all 
 I suggest making a `.env` file in your main directory, and putting your variables there, but you can also set it with Bash built-in export command.\
 If you want to be able to start your app with `flask run` from main directiory, set your variable like this.
 ```bash
-FLASK_RUN=src/application
+FLASK_APP=src/application
 ```
